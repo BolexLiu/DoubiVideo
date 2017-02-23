@@ -16,9 +16,9 @@
             android:id="@+id/collapsing_toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:collapsedTitleTextAppearance="@style/textToolbar"
             app:contentScrim="#000000"
             app:expandedTitleMarginStart="48dp"
-            app:collapsedTitleTextAppearance="@style/textToolbar"
             app:expandedTitleTextAppearance="@style/textToolbarTitle"
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
@@ -47,6 +47,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
 
 
 </android.support.design.widget.CoordinatorLayout>

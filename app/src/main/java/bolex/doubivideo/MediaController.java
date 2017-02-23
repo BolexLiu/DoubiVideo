@@ -119,6 +119,7 @@ public class MediaController extends FrameLayout implements IMediaController {
         mWindow.setBackgroundDrawable(null);
         mWindow.setOutsideTouchable(true);
         mAnimStyle = android.R.style.Animation;
+
     }
 
     /**

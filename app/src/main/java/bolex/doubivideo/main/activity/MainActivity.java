@@ -24,8 +24,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bolex.doubivideo.R;
+import bolex.doubivideo.app.MyApp;
 import bolex.doubivideo.main.adpter.QuickAdapter;
 import bolex.doubivideo.main.entity.NewItem;
+import bolex.doubivideo.play.activity.ut.VideoCov;
 import rx.Observable;
 import rx.Observer;
 import rx.Subscription;
@@ -47,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         my_content = (RecyclerView) findViewById(R.id.my_content);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -93,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initRecycler() {
-        GridLayoutManager layoutManager = new GridLayoutManager(MainActivity.this, 2);
+        GridLayoutManager layoutManager = new GridLayoutManager(MainActivity.this, 1);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         my_content.setLayoutManager(layoutManager);
         getMeiziFromServer();
@@ -133,7 +134,9 @@ public class MainActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                return is;
+                VideoCov videoCov = new VideoCov();
+                List<NewItem> newItems = videoCov.convertVidioUrl(is);
+                return newItems;
             }
         }).observeOn(AndroidSchedulers.mainThread()).subscribe(new Observer<List<NewItem>>() {
             @Override
@@ -147,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onNext(List<NewItem> items) {
+                MyApp.getApp().setPalyDatas(items);
                 adapter = new QuickAdapter(items);
                 adapter.openLoadAnimation();
                 my_content.setAdapter(adapter);

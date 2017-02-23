@@ -67,6 +67,7 @@
                 card_view:cardPreventCornerOverlap="true"
                 card_view:cardUseCompatPadding="true">
 
+
                 <com.pili.pldroid.player.widget.PLVideoTextureView
                     android:id="@+id/PLVtv"
                     android:name="@+id/PLVideoTextureView"
